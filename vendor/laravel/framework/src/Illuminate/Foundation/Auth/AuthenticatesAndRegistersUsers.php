@@ -138,9 +138,24 @@ trait AuthenticatesAndRegistersUsers {
 
         if(count($clubes) > 0){
             $credentials = array(
-                //'email' => $clubes[0]->EMAIL,
+                'email' => $clubes[0]->EMAIL,
                 'password' => $request->get('password')
             );
+
+
+            /*$oUser = new \App\User;
+            $user = $oUser::where('email', 'niko.afv@gmail.com')->get();
+            print_r($user[0]->password);
+            echo "<br/>";
+
+
+            if (\Hash::check($request->get('password'), $user[0]->password))
+            {
+                echo "si es";
+            }else{
+                echo "no es";
+            }
+            die;*/
 
 
             //print_r( \Hash::make($request->get('password')));die;
