@@ -64,15 +64,16 @@ trait AuthenticatesAndRegistersUsers {
 
         $user = new \App\User;
 
+        $dbclub = new \App\Club;
+        $oClub = $dbclub::where("ID", $club)->get();
+
         $user->name = $name;
+        $user->email = $oClub[0]['EMAIL'];
         $user->password = \Hash::make($password);
         $user->club_id  = $club;
         $user->token    = str_random(150);
 
         if($user->save()){
-
-            $dbclub = new \App\Club;
-            $oClub = $dbclub::where("ID", $user->club_id)->get();
 
             $data = array(
                 'id_club'   => $oClub[0]['ID'],
@@ -137,9 +138,12 @@ trait AuthenticatesAndRegistersUsers {
 
         if(count($clubes) > 0){
             $credentials = array(
-                'email' => $clubes[0]->EMAIL,
+                //'email' => $clubes[0]->EMAIL,
                 'password' => $request->get('password')
             );
+
+
+            //print_r( \Hash::make($request->get('password')));die;
 
             //$credentials = $request->only('email', 'password');
             if ($this->auth->attempt($credentials, $request->has('remember')))

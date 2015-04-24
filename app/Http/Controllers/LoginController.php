@@ -34,7 +34,7 @@ class LoginController extends Controller {
         if($user->save()){
 
             $dbclub = new \App\Club;
-            $oClub = $dbclub::where("ID", $user->CLUB_ID)->get();
+              $oClub = $dbclub::where("ID", $user->CLUB_ID)->get();
 
             $data = array(
                 'id_club'   => $oClub[0]['ID'],
@@ -62,8 +62,8 @@ class LoginController extends Controller {
 
     public function activate2($token, $club, $email){
         $dbuser = new \App\User;
-        $user   = $dbuser::where("TOKEN", $token)
-            ->where("CLUB_ID", $club)
+        $user   = $dbuser::where("token", $token)
+            ->where("club_id", $club)
 
             ->get()
         ;
@@ -73,7 +73,7 @@ class LoginController extends Controller {
                 ->where("EMAIL", $email)
                 ->get();
             if(count($club) > 0){
-                $updated = \App\User::where('ID', $user[0]->ID)->update(['ACTIVO' => 1]);
+                $updated = \App\User::where('id', $user[0]->id)->update(['active' => 1]);
                 if($updated > 0){
                     return redirect('/')->with('message', 'El Club '. $club[0]->NOMBRE . ' ha sido activado')
                         ->with("msg",'success')
