@@ -163,6 +163,11 @@ trait AuthenticatesAndRegistersUsers {
             //$credentials = $request->only('email', 'password');
             if ($this->auth->attempt($credentials, $request->has('remember')))
             {
+                \Session::put('Club',array(
+                    'id' =>  $clubes[0]->ID,
+                    'nombre' =>  $clubes[0]->NOMBRE,
+                    'email' =>  $clubes[0]->EMAIL,
+                ));
                 return redirect()->intended($this->redirectPath());
             }
         }

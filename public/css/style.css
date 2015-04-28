@@ -2992,7 +2992,7 @@ video {
   position: relative;
 }
 .modal-dialog {
-  z-index: 1200;
+  z-index: 3200;
 }
 .modal-body {
   padding: 20px 30px 30px 30px;
@@ -3075,7 +3075,7 @@ ol.unstyled {
   bottom: 0;
   left: 0;
   padding: 10px 20px;
-  position: absolute;
+  position: fixed/*absolute*/;
   right: 0;
 }
 .footer.fixed_full {

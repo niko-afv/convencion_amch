@@ -12,4 +12,9 @@ class Club extends Model {
         return $this->hasOne('App\User');
     }
 
+    public function unidades()
+    {
+        return $this->hasMany('App\Unidad','CLUB_ID','ID');
+    }
+
 }

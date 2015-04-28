@@ -12,11 +12,13 @@
 */
 
 Route::get('/', 'WelcomeController@index');
-
 Route::get('home', 'HomeController@index');
-
 Route::get('dashboard', 'DashboardController@index');
-
+Route::get('categorias/{unidad}', 'DashboardController@categorias');
+Route::get('ver_desafio/{unidad}/{desafio}', 'DashboardController@ver_desafio');
+Route::get('formulario/{unidad}/{categoria}', 'DashboardController@formulario');
+Route::post('formulario/guardar', 'DashboardController@guardar');
+Route::post('formulario/cargarImg', 'DashboardController@cargarImg');
 Route::get('activate/{token}/{club}/{email}', 'LoginController@activate2');
 
 
