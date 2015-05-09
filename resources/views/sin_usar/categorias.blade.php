@@ -3,7 +3,7 @@
 
 <head>
 
-@include('layouts.meta')
+@include('...layouts.meta')
 <style>
     .categories{
         transition: all 0.3s ease;
@@ -24,7 +24,7 @@
 
         <div id="page-wrapper" class="gray-bg">
 
-            @include('layouts.header')
+            @include('...layouts.header')
 
             <div class="wrapper wrapper-content">
                 <div class="row">
@@ -40,7 +40,7 @@
 
                                 @foreach($categorias as $categoria)
                                 <div class="col-lg-4">
-                                    <a href="/formulario/{{ $unidad_id }}/{{ $categoria->ID }}">
+                                    <a href="/formulario/{{ $categoria->ID }}">
                                     <div class="widget navy-bg no-padding categories">
                                         <div class="p-m">
                                             <h1 class="m-xs">0</h1>
@@ -78,6 +78,6 @@
         </div>
     </div>
 
-    @include('layouts.footer')
+    @include('...layouts.footer')
 </body>
 </html>

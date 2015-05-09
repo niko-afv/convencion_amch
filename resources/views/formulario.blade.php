@@ -28,7 +28,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-12">
+                        <div class="col-md-8 col-lg-offset-2">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h5><small>Para cumplir con el requisito debes completar este formulario</small></h5>
@@ -37,7 +37,6 @@
                                             <i class="fa fa-wrench"></i>
                                         </a>
                                         <ul class="dropdown-menu dropdown-user">
-
                                             <li>
                                                 <a data-toggle="modal" href="#portada-form" title="Agregar Imagenes">
                                                     <i class="fa fa-plus"></i>
@@ -49,8 +48,8 @@
                                 </div>
                                 <div class="ibox-content">
                                     <div class="row">
-                                        <div class="col-sm-6 b-r">
-                                            <form role="form" action="/formulario/guardar" method="POST">
+                                        <form role="form" action="/formulario/guardar" method="POST">
+                                            <div class="col-sm-6 b-r">
                                                 <div class="form-group">
                                                     <label>Actividad: </label>
                                                     <select name="desafio" class="form-control">
@@ -60,13 +59,14 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <hr/>
+                                            </div>
+                                            <div class="col-sm-6 b-r">
                                                 <div class="form-group">
-                                                    <p></p>
                                                     <label>Lugar</label>
                                                     <input name="lugar" class="form-control" type="text" placeholder="Ej: Plaza san benito"/>
                                                 </div>
-                                                <hr/>
+                                            </div>
+                                            <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label>Descripción </label>
                                                     <p>Comentanos brevemente de que se trató la actividad.</p>
@@ -74,49 +74,21 @@
                                                 </div>
                                                 <div>
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="hidden" name="unidad" value="{{ $unidad }}">
-                                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit">
+                                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs col-sm-12" type="submit">
                                                         <strong>Guardar</strong>
                                                     </button>
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6"><h4>Imagenes de La Actividad</h4>
+                                            </div>
+                                        </form>
+                                        <!--<div class="col-sm-6"><h4>Imagenes de La Actividad</h4>
                                             <img src="http://clasionce-static.elonce.com/images/publicar-anuncio-gratis.png"    />
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="portada-form" class="modal fade" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="row">
-                                        <div class="ibox">
-                                            <div class="ibox-title">
-                                                <h5>Modifcar Imagenes</h5>
-                                            </div>
-                                            <div class="ibox-content">
-                                                <form id="my-awesome-dropzone" class="dropzone" action="/formulario/cargarImg">
-
-                                                    <div class="fallback"><input name="file" type="file" multiple /></div>
-                                                    <div class="dropzone-previews"></div>
-
-                                                    <input  type="hidden" name="dir" value="{{ $dir }}">
-                                                    <input  type="hidden" name="unidad_id" value="{{ $unidad }}">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                </form>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
 
                 <div class="footer">
                     <div class="pull-right">

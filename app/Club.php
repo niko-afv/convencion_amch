@@ -17,4 +17,9 @@ class Club extends Model {
         return $this->hasMany('App\Unidad','CLUB_ID','ID');
     }
 
+    public function actividades()
+    {
+        return $this->belongsToMany('App\Actividad','CLUBES_ACTIVIDADES','CLUB_ID','ACTIVIDAD_ID');
+    }
+
 }

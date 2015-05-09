@@ -3,8 +3,20 @@
 
 <head>
 
-@include('layouts.meta')
-
+@include('...layouts.meta')
+<style>
+    .categories{
+        transition: all 0.3s ease;
+    }
+    .categories:hover{
+        margin-top: 1px;
+        -moz-box-shadow: 3px 3px 4px #444;
+        -webkit-box-shadow: 3px 3px 4px #444;
+        box-shadow: 3px 3px 4px #444;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444')";
+        filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444');
+    }
+</style>
 </head>
 
 <body>
@@ -12,37 +24,53 @@
 
         <div id="page-wrapper" class="gray-bg">
 
-            @include('layouts.header')
+            @include('...layouts.header')
 
             <div class="wrapper wrapper-content">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
+
+
+
+                        <div class="row wrapper border-bottom white-bg page-heading">
                             <div class="ibox-title">
-                                <h5>Desafíos</h5>
+                                <h5>Categorías</h5>
                             </div>
                             <div class="ibox-content">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Unidad</th>
-                                            <th>Actividad #1</th>
-                                            <th>Actividad #2</th>
-                                            <th>Actividad #3</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($unidades as $unidad)
-                                        <tr>
-                                            <td><a href="/categorias/{{ $unidad->ID }}">{{ $unidad->NOMBRE }}</a></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+
+                                @foreach($categorias as $categoria)
+                                    <div class="col-lg-4">
+                                        @if($fotos_count[$categoria->NOMBRE] ==  0)
+                                            <a href="/formulario/{{ $categoria->ID }}">
+                                         @else
+                                            <a href="/ver_desafio/{{ $desafio['id'] }}">
+                                         @endif
+
+                                        <div class="widget navy-bg no-padding categories">
+                                            <div class="p-m">
+                                                <h1 class="m-xs">{{ $fotos_count[$categoria->NOMBRE] }} Fotos</h1>
+
+                                                <h3 class="font-bold no-margins">
+                                                    Desafío: {{ $categoria->NOMBRE }}
+                                                </h3>
+                                                @if($fotos_count[$categoria->NOMBRE] > 0)
+                                                    <small>Requisito cumplido: {{ $desafio['nombre'] }}</small>
+                                                @else
+                                                    <small>No Tienes ninguna imagen para este requisito.</small>
+                                                @endif
+                                            </div>
+                                            <div class="flot-chart">
+                                                <div class="flot-chart-content" id="flot-chart1" style="padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 526px; height: 100px;" width="526" height="100"></canvas><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 526px; height: 100px;" width="526" height="100"></canvas></div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+
                             </div>
+
+                            <div style="clear: both;"></div>
+
                         </div>
                     </div>
                 </div>
@@ -58,6 +86,6 @@
         </div>
     </div>
 
-    @include('layouts.footer')
+    @include('...layouts.footer')
 </body>
 </html>
