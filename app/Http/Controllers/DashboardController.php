@@ -29,6 +29,7 @@ class DashboardController extends Controller {
 
     public function index(){
         $categorias = \App\Categoria::all();
+        $desafio = array();
         foreach($categorias as $categoria){
             $count = \DB::table('ACTIVIDADES')
                 ->join('CLUBES_ACTIVIDADES', 'ACTIVIDADES.ID', '=', 'CLUBES_ACTIVIDADES.ACTIVIDAD_ID')
