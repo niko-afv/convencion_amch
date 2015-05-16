@@ -179,7 +179,7 @@
                     this.on("error", function(file, message) { alert("Error: " + message); });
                     //this.on("success", function(e, response) { alert(response); });
                 },
-                success: function(e,response){
+                successmultiple: function(e,response){
                     console.log(response);
                     if(!response.error){
                         location.reload();
