@@ -134,6 +134,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" id="finish">Terminar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -167,6 +170,10 @@
     <!--Document Ready-->
     <script type="text/javascript">
         jQuery(document).ready(function(){
+            $("#finish").on("click", function(){
+                location.reload();
+            });
+
             Dropzone.options.myAwesomeDropzone = {
                 maxFilesize: 100, // MB
                 autoProcessQueue: true,
@@ -182,7 +189,6 @@
                 successmultiple: function(e,response){
                     console.log(response);
                     if(!response.error){
-                        location.reload();
                         //$("#galeria").append(generateHtml(response.data.imgId, response.data.imgPath));
                     }
                 }
