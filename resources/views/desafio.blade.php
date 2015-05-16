@@ -176,7 +176,7 @@
                 acceptedFiles: ".png, .jpeg, .jpg, .gif",
                 addRemoveLinks: false,
                 init: function() {
-                    this.on("error", function(file, message) { alert("Error: " + message); });
+                    this.on("error", function(file, message) { console.error("Error: " + message); });
                     //this.on("success", function(e, response) { alert(response); });
                 },
                 successmultiple: function(e,response){
