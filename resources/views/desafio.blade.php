@@ -171,10 +171,10 @@
                 maxFilesize: 100, // MB
                 autoProcessQueue: true,
                 uploadMultiple: true,
-                parallelUploads: 1,
+                parallelUploads: 2,
                 maxFiles: 3,
-                acceptedFiles: ".jpeg, .jpg, .gif",
-                addRemoveLinks: true,
+                acceptedFiles: ".png, .jpeg, .jpg, .gif",
+                addRemoveLinks: false,
                 init: function() {
                     this.on("error", function(file, message) { alert("Error: " + message); });
                     //this.on("success", function(e, response) { alert(response); });
