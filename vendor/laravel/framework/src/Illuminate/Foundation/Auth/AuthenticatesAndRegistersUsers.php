@@ -163,6 +163,8 @@ trait AuthenticatesAndRegistersUsers {
             //$credentials = $request->only('email', 'password');
             if ($this->auth->attempt($credentials, $request->has('remember')))
             {
+                $user = \App\User::where('email', $clubes[0]->EMAIL)->get();
+                \Session::put('username', $user[0]->name);
                 \Session::put('Club',array(
                     'id' =>  $clubes[0]->ID,
                     'nombre' =>  $clubes[0]->NOMBRE,

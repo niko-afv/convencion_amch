@@ -28,6 +28,11 @@ class DashboardController extends Controller {
 	}
 
     public function index(){
+        if(\Session::get('username') == 'Regional_AMCH'){
+            return redirect('/dashboard/regionales');
+        }
+
+
         $categorias = \App\Categoria::all();
         $desafio = array();
         foreach($categorias as $categoria){
@@ -61,6 +66,16 @@ class DashboardController extends Controller {
             'fotos_count' => $fotos_count,
             'categorias' => $categorias,
             'desafio'    => $desafio
+        ));
+    }
+
+
+    public function regionales(){
+        $clubes = \App\Club::all();
+        $categorias = \App\Categoria::all();
+        return view('dashboard_regional', array(
+            'clubes'        => $clubes,
+            'categorias'    => $categorias
         ));
     }
 

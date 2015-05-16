@@ -17,13 +17,10 @@
                     <h2>Desafío</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li>
-                            <a>Miscellaneous</a>
+                            <a href="/dashboard">Inicio</a>
                         </li>
                         <li class="active">
-                            <strong>Article</strong>
+                            <strong>Desafío</strong>
                         </li>
                     </ol>
                 </div>
@@ -51,13 +48,18 @@
                             </div>
                             <hr/>
                             @if(count($galeria))
+
+                            <div class="m-b-md">
+                                <a data-toggle="modal" href="#portada-form" title="Agregar Imagenes">Subir Más Imagenes</a>
+                            </div>
+
                             <div class="carousel slide" id="carousel1">
                                 <div class="carousel-inner">
                                     <?php $i = 0;?>
                                     @foreach($galeria as $imagen)
                                     <?php $i += 1;?>
                                     <div class="item @if($i == 1) active @endif">
-                                        <img alt="image" class="img-responsive" src="{{ $imagen->RUTA_WEB }}" width="500">
+                                        <img alt="image" class="img-responsive" src="{{ $imagen->RUTA_WEB }}" width="100%">
                                     </div>
                                     @endforeach
                                 </div>
@@ -68,6 +70,8 @@
                                     <span class="icon-next"></span>
                                 </a>
                             </div>
+
+
                             @else
                                 <div class="col-lg-offset-2">
                                 <a data-toggle="modal" href="#portada-form" title="Agregar Imagenes">
@@ -106,13 +110,17 @@
             <div id="portada-form" class="modal fade" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                            <h4>Cargar Imagenes</h4>
+                        </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="ibox">
-                                    <div class="ibox-title">
+                                    <!--<div class="ibox-title">
                                         <h5>Modifcar Imagenes</h5>
-                                    </div>
-                                    <div class="ibox-content">
+                                    </div>-->
+                                    <!--<div class="ibox-content">-->
                                         <form id="my-awesome-dropzone" class="dropzone" action="/formulario/cargarImg">
 
                                             <div class="fallback"><input name="file" type="file" multiple /></div>
@@ -122,15 +130,13 @@
                                             <input type="hidden" name="_relacion" value="{{ $actividad->ID }}"/>
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         </form>
-                                    </div>
+                                    <!--</div>-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
         <div class="footer">
             <div class="pull-right">
@@ -144,11 +150,23 @@
         </div>
         </div>
 
+
+
+    <!-- Mainly scripts -->
+    <script src="/js/front/jquery-2.1.1.js"></script>
+    <script src="/js/front/bootstrap.min.js"></script>
+    <!--<script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>-->
+    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/js/front/inspinia.js"></script>
+    <!--<script src="/js/plugins/pace/pace.min.js"></script>-->
+
     <!-- DROPZONE -->
     <script src="/js/plugins/dropzone/dropzone.js"></script>
     <!--Document Ready-->
     <script type="text/javascript">
-        $(document).ready(function(){
+        jQuery(document).ready(function(){
             Dropzone.options.myAwesomeDropzone = {
                 maxFilesize: 100, // MB
                 autoProcessQueue: true,
@@ -159,6 +177,7 @@
                 addRemoveLinks: true,
                 init: function() {
                     this.on("error", function(file, message) { alert("Error: " + message); });
+                    //this.on("success", function(e, response) { alert(response); });
                 },
                 success: function(e,response){
                     console.log(response);
@@ -179,16 +198,6 @@
             }
         });
     </script>
-
-    <!-- Mainly scripts -->
-    <script src="/js/front/jquery-2.1.1.js"></script>
-    <script src="/js/front/bootstrap.min.js"></script>
-    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="/js/front/inspinia.js"></script>
-    <script src="/js/plugins/pace/pace.min.js"></script>
 
 </body>
 

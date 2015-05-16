@@ -14,12 +14,14 @@
 Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 Route::get('dashboard', 'DashboardController@index');
+Route::get('dashboard/regionales', 'DashboardController@regionales');
 Route::get('categorias/', 'DashboardController@categorias');
 Route::get('ver_desafio/{desafio}', 'DesafioController@ver_desafio');
 Route::get('formulario/{categoria}', 'DesafioController@formulario');
 Route::post('formulario/guardar', 'DesafioController@guardar');
 Route::post('formulario/cargarImg', 'DesafioController@cargarImg');
 Route::get('activate/{token}/{club}/{email}', 'LoginController@activate2');
+
 
 
 Route::get('404', function(){
