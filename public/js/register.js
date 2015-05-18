@@ -2,7 +2,7 @@
 $.formUtils.addValidator({
     name : 'select_club',
     validatorFunction : function(value, $el, config, language, $form) {
-        return (value > 0 && value < 38);
+        return (value > 0 && value < 999);
     },
     errorMessage : 'Debe seleccionar un club',
     errorMessageKey: 'badEvenNumber'
