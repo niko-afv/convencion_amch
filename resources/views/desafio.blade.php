@@ -9,9 +9,11 @@
 
     <div id="wrapper">
 
+    @include('layouts.sidebar')
+
         <div id="page-wrapper" class="gray-bg">
 
-        @include('layouts.header')
+            @include('layouts.header')
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
                     <h2>Desafío</h2>
@@ -29,7 +31,7 @@
                 </div>
             </div>
 
-        <div class="wrapper wrapper-content  animated fadeInRight article">
+        <div class="wrapper wrapper-content article">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
                     <div class="ibox">
@@ -41,7 +43,7 @@
                             </div>-->
 
                             <div class="text-center article-title">
-                                <span class="text-muted"><i class="fa fa-clock-o"></i> 28th Oct 2015</span>
+                                <span class="text-muted"> </span>
                                 <h1>
                                     {{ $actividad->NOMBRE }}
                                 </h1>
@@ -50,7 +52,7 @@
                             @if(count($galeria))
 
                             <div class="m-b-md">
-                                <a data-toggle="modal" href="#portada-form" title="Agregar Imagenes">Subir Más Imagenes</a>
+                                <a data-toggle="modal" href="#myModal" title="Agregar Imagenes">Subir Más Imagenes</a>
                             </div>
 
                             <div class="carousel slide" id="carousel1">
@@ -74,7 +76,7 @@
 
                             @else
                                 <div class="col-lg-offset-2">
-                                <a data-toggle="modal" href="#portada-form" title="Agregar Imagenes">
+                                <a data-toggle="modal" href="#myModal" title="Agregar Imagenes">
                                     <img alt="image" class="img-responsive" src="/img/no-image.png" width="500">
                                 </a>
                                 </div>
@@ -95,9 +97,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="small text-right">
-                                        <h5>Stats:</h5>
-                                        <div> <i class="fa fa-comments-o"> </i> 56 comments </div>
-                                        <i class="fa fa-eye"> </i> 144 views
+                                        <h5>Lugar:</h5>
+                                        <div> <i class="fa fa-comments-o"> </i> {{ $actividad->LUGAR }}</div>
+                                        <!--<i class="fa fa-eye"> </i> 144 views-->
                                     </div>
                                 </div>
                             </div>
@@ -106,6 +108,35 @@
                 </div>
             </div>
 
+
+
+
+
+            <div class="modal inmodal in" id="myModal" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 15px;">
+                <div class="modal-dialog">
+                <div class="modal-content animated bounceInRight">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                            <i class="fa fa-laptop modal-icon"></i>
+                            <h4 class="modal-title">Imagenes</h4>
+                            <small class="font-bold">Puedes hacer click en el recuadro de abajo o arrastar las imagenes desde tu computador.</small>
+                        </div>
+                        <div class="modal-body">
+                            <form id="my-awesome-dropzone" class="dropzone" action="/formulario/cargarImg">
+                                <div class="fallback"><input name="file" type="file" multiple /></div>
+                                <div class="dropzone-previews"></div>
+
+                                <!--<input  type="hidden" name="dir" value="">-->
+                                <input type="hidden" name="_relacion" value="{{ $actividad->ID }}"/>
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="finish">Terminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div id="portada-form" class="modal fade" aria-hidden="true">
                 <div class="modal-dialog">
@@ -135,20 +166,20 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" id="finish">Terminar</button>
+                            <button class="btn btn-primary" >Terminar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2015
-            </div>
-        </div>
+                    <div class="pull-right">
+                        Convecnión de Conquistadores <strong>2015</strong>.
+                    </div>
+                    <div>
+                        Developed by <a href="http://nicolasfredes.cl"><strong>Nks</strong></a> for Regional AMCH 2015.
+                    </div>
+                </div>
 
         </div>
         </div>

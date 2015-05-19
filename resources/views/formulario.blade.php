@@ -9,6 +9,8 @@
 <body>
     <div id="wrapper">
 
+        @include('layouts.sidebar')
+
         <div id="page-wrapper" class="gray-bg">
 
             @include('layouts.header')
@@ -19,10 +21,9 @@
 
                         <div class="row wrapper border-bottom white-bg page-heading">
                             <div class="col-lg-10">
-                                <h2>Desafío: Buen Samaritano</h2>
+                                <h2>Desafío: {{ $categoria->NOMBRE }}</h2>
                                 <ol class="breadcrumb">
-                                    <li><a href="index.html">Mis Unidades</a></li>
-                                    <li><a>Categprías</a></li>
+                                    <li><a href="/dashboard">Inicio</a></li>
                                     <li class="active"><strong >Formulario de Desafíos</strong></li>
                                 </ol>
                             </div>
@@ -92,10 +93,11 @@
 
                 <div class="footer">
                     <div class="pull-right">
-                        10GB of <strong>250GB</strong> Free.
+                        Convecnión de Conquistadores <strong>2015</strong>.
                     </div>
-                <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                    <div>
+                        Developed by <a href="http://nicolasfredes.cl"><strong>Nks</strong></a> for Regional AMCH 2015.
+                    </div>
                 </div>
             </div>
         </div>

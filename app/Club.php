@@ -12,6 +12,11 @@ class Club extends Model {
         return $this->hasOne('App\User');
     }
 
+    public function zona()
+    {
+        return $this->belongsTo('App\Zona', 'ZONA','ID');
+    }
+
     public function unidades()
     {
         return $this->hasMany('App\Unidad','CLUB_ID','ID');

@@ -22,9 +22,11 @@
 <body>
     <div id="wrapper">
 
+        @include('layouts.sidebar')
+
         <div id="page-wrapper" class="gray-bg">
 
-            @include('...layouts.header')
+            @include('layouts.header')
 
             <div class="wrapper wrapper-content">
                 <div class="row">
@@ -78,10 +80,10 @@
         </div>
         <div class="footer">
             <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
+                Convecnión de Conquistadores <strong>2015</strong>.
             </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2015
+                Developed by <a href="http://nicolasfredes.cl"><strong>Nks</strong></a> for Regional AMCH 2015.
             </div>
         </div>
     </div>

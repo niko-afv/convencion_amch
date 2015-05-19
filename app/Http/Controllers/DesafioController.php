@@ -34,7 +34,7 @@ class DesafioController extends Controller {
             ->join('CLUBES_ACTIVIDADES', 'CLUBES.ID', '=', 'CLUBES_ACTIVIDADES.CLUB_ID')
             ->join('ACTIVIDADES', 'ACTIVIDADES.ID', '=', 'CLUBES_ACTIVIDADES.ACTIVIDAD_ID')
 
-            ->select('ACTIVIDADES.NOMBRE','CLUBES_ACTIVIDADES.ID','CLUBES_ACTIVIDADES.DESCRIPCION')
+            ->select('ACTIVIDADES.NOMBRE','CLUBES_ACTIVIDADES.ID','CLUBES_ACTIVIDADES.DESCRIPCION', 'CLUBES_ACTIVIDADES.LUGAR')
             ->where('CLUBES_ACTIVIDADES.ACTIVIDAD_ID',$desafio)
             ->where('CLUBES_ACTIVIDADES.CLUB_ID',$session_club['id'])
             ->get();
@@ -54,6 +54,13 @@ class DesafioController extends Controller {
     }
 
     public function formulario($categoria){
+
+        $dbclub = new \App\Club;
+        $oClub = $dbclub::where("ID", \Session('Club')['id'])->get();
+        $zona = \App\Club::find(\Session('Club')['id'])->zona;
+
+
+
         $oCategoria = \App\Categoria::find($categoria)->get();
         $actividades = \App\Actividad::where('CATEGORIA_ID',$categoria)->get();
 
@@ -61,7 +68,7 @@ class DesafioController extends Controller {
 
         return view('formulario', array(
             'actividades' => $actividades,
-            'categoria'   => $categoria
+            'categoria'   => $oCategoria[0]
         ));
     }
 

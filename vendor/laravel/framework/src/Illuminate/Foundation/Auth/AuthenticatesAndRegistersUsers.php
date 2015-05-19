@@ -163,12 +163,15 @@ trait AuthenticatesAndRegistersUsers {
             //$credentials = $request->only('email', 'password');
             if ($this->auth->attempt($credentials, $request->has('remember')))
             {
+                $oZona = \App\Club::find($clubes[0]->ID)->zona;
+
                 $user = \App\User::where('email', $clubes[0]->EMAIL)->get();
                 \Session::put('username', $user[0]->name);
                 \Session::put('Club',array(
                     'id' =>  $clubes[0]->ID,
-                    'nombre' =>  $clubes[0]->NOMBRE,
+                    'nombre' => $clubes[0]->NOMBRE,
                     'email' =>  $clubes[0]->EMAIL,
+                    'zona'  =>  $oZona->NOMBRE
                 ));
                 return redirect()->intended($this->redirectPath());
             }
