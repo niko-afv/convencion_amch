@@ -94,12 +94,17 @@ class DesafioController extends Controller {
     public function cargarImg(){
         try{
             $session_club = \Session::get('Club');
-            $upload_dir = public_path() ."/uploads/clubes/".$session_club['id'] . "/" . \Input::get('_relacion');
-
+            $upload_dir = public_path() ."/uploads/clubes/".$session_club['id'];
             if(!file_exists($upload_dir)){
                 mkdir($upload_dir);
                 chmod($upload_dir, 0777);
             }
+            $final_upload_dir = public_path() ."/uploads/clubes/".$session_club['id']. "/" . \Input::get('_relacion');
+            if(!file_exists($final_upload_dir)){
+                mkdir($final_upload_dir);
+                chmod($final_upload_dir, 0777);
+            }
+
             $file = \Request::file('file');
             $file = $file[0];
             $uploadSuccess = $file->move($upload_dir,/*$this->convert_string(*/$file->getClientOriginalName()/*)*/);
