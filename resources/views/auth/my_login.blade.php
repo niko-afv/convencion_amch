@@ -127,7 +127,7 @@
         <div class="row">
             <div class="col-md-12">
                 <p class="align-center">
-                    El horario de acceso es desde las 11:00 hasta las 23:59 del día Sábado 16 de Mayo
+                    El sistema estará disponible hasta las 23:59 hrs. del día Sábado 23 de Mayo
                 </p>
             </div>
             <div class="align-center">
