@@ -63,6 +63,7 @@ class DashboardController extends Controller {
                 );
             }
         }
+
         return view('dashboard', array(
             'fotos_count' => $fotos_count,
             'categorias' => $categorias,
