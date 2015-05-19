@@ -53,8 +53,10 @@ class DashboardController extends Controller {
                 //->join('IMAGENES', 'CLUBES_ACTIVIDADES.ID', '=', 'IMAGENES.RELACION_ID')
                 ->select('ACTIVIDADES.NOMBRE','ACTIVIDADES.ID')
                 ->where('ACTIVIDADES_CATEGORIAS.ID',$categoria->ID)
-                ->where('CLUBES_ACTIVIDADES.CLUB_ID',11)
+                ->where('CLUBES_ACTIVIDADES.CLUB_ID',$session_club['id'])
                 ->get();
+
+            print_r($actividades);die;
 
             foreach ($actividades as $actividad) {
                 $desafio = array(
