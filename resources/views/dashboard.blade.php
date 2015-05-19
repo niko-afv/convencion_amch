@@ -42,10 +42,10 @@
 
                                 @foreach($categorias as $categoria)
                                     <div class="col-lg-4">
-                                        @if($fotos_count[$categoria->NOMBRE] ==  0)
-                                            <a href="/formulario/{{ $categoria->ID }}">
-                                         @else
+                                        @if(count($desafio) >  0)
                                             <a href="/ver_desafio/{{ $desafio['id'] }}">
+                                         @else
+                                            <a href="/formulario/{{ $categoria->ID }}">
                                          @endif
 
                                         <div class="widget navy-bg no-padding categories">

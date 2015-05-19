@@ -61,7 +61,7 @@
                                     @foreach($galeria as $imagen)
                                     <?php $i += 1;?>
                                     <div class="item @if($i == 1) active @endif">
-                                        <img alt="image" class="img-responsive" src="{{ $imagen->RUTA_WEB }}" width="100%">
+                                        <img alt="image" class="img-responsive" src="{{ $imagen->RUTA_WEB }}" width="100%" height="100%">
                                     </div>
                                     @endforeach
                                 </div>
@@ -75,9 +75,9 @@
 
 
                             @else
-                                <div class="col-lg-offset-2">
+                                <div class="">
                                 <a data-toggle="modal" href="#myModal" title="Agregar Imagenes">
-                                    <img alt="image" class="img-responsive" src="/img/no-image.png" width="500">
+                                    <img alt="image" class="img-responsive" src="/img/no-image.png">
                                 </a>
                                 </div>
                             @endif
