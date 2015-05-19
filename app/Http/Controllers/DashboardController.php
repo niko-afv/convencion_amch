@@ -32,6 +32,7 @@ class DashboardController extends Controller {
             return redirect('/dashboard/regionales');
         }
 
+        $session_club = \Session::get('Club');
 
         $categorias = \App\Categoria::all();
         $desafio = array();
@@ -42,7 +43,7 @@ class DashboardController extends Controller {
                 ->join('IMAGENES', 'CLUBES_ACTIVIDADES.ID', '=', 'IMAGENES.RELACION_ID')
                 ->select('*')
                 ->where('ACTIVIDADES_CATEGORIAS.ID',$categoria->ID)
-                ->where('CLUBES_ACTIVIDADES.CLUB_ID',11)
+                ->where('CLUBES_ACTIVIDADES.CLUB_ID',$session_club['id'])
                 ->count();
             $fotos_count[$categoria->NOMBRE] = $count;
 

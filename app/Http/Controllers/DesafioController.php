@@ -39,6 +39,8 @@ class DesafioController extends Controller {
             ->where('CLUBES_ACTIVIDADES.CLUB_ID',$session_club['id'])
             ->get();
 
+
+
         $galeria = \DB::table('IMAGENES')
             ->join('CLUBES_ACTIVIDADES', 'IMAGENES.RELACION_ID', '=', 'CLUBES_ACTIVIDADES.ID')
             ->where('CLUBES_ACTIVIDADES.ID',$actividad[0]->ID)
