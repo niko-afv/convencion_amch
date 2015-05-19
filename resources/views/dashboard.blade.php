@@ -42,7 +42,7 @@
                                     <div class="col-lg-4">
                                         @if($fotos_count[$categoria->NOMBRE] ==  0)
                                             <a href="/formulario/{{ $categoria->ID }}">
-                                         @else
+                                         @elseif(isset($desafio['id']))
                                             <a href="/ver_desafio/{{ $desafio['id'] }}">
                                          @endif
 
