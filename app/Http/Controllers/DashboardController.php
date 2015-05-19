@@ -57,14 +57,11 @@ class DashboardController extends Controller {
                 ->get();
 
             foreach ($actividades as $actividad) {
-                print_r($actividad);
                 $desafio = array(
                     'nombre'    => $actividad->NOMBRE,
                     'id'        => $actividad->ID
                 );
-                print_r($desafio);
             }
-            die;
         }
 
         return view('dashboard', array(
