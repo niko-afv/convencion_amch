@@ -40,7 +40,6 @@
 
                                 @foreach($categorias as $categoria)
                                     <div class="col-lg-4">
-                                        <?php print_r($desafio);die;?>
                                         @if($fotos_count[$categoria->NOMBRE] ==  0)
                                             <a href="/formulario/{{ $categoria->ID }}">
                                          @else
