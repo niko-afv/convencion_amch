@@ -56,14 +56,15 @@ class DashboardController extends Controller {
                 ->where('CLUBES_ACTIVIDADES.CLUB_ID',$session_club['id'])
                 ->get();
 
-            print_r($actividades);die;
-
             foreach ($actividades as $actividad) {
+                print_r($actividad);
                 $desafio = array(
                     'nombre'    => $actividad->NOMBRE,
                     'id'        => $actividad->ID
                 );
+                print_r($desafio);
             }
+            die;
         }
 
         return view('dashboard', array(
