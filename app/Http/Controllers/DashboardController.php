@@ -57,7 +57,7 @@ class DashboardController extends Controller {
                 ->get();
 
             foreach ($actividades as $actividad) {
-                $desafio = array(
+                $desafio[$categoria->ID] = array(
                     'nombre'    => $actividad->NOMBRE,
                     'id'        => $actividad->ID
                 );

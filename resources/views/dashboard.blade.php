@@ -40,10 +40,12 @@
                             </div>
                             <div class="ibox-content">
 
+
+
                                 @foreach($categorias as $categoria)
                                     <div class="col-lg-4">
-                                        @if(count($desafio) >  0)
-                                            <a href="/ver_desafio/{{ $desafio['id'] }}">
+                                        @if(isset($desafio[$categoria->ID]) && count($desafio[$categoria->ID]) >  0)
+                                            <a href="/ver_desafio/{{ $desafio[$categoria->ID]['id'] }}">
                                          @else
                                             <a href="/formulario/{{ $categoria->ID }}">
                                          @endif
@@ -56,7 +58,7 @@
                                                     Desafío: {{ $categoria->NOMBRE }}
                                                 </h3>
                                                 @if($fotos_count[$categoria->NOMBRE] > 0)
-                                                    <small>Requisito cumplido: {{ $desafio['nombre'] }}</small>
+                                                    <small>Requisito cumplido: {{ $desafio[$categoria->ID]['nombre'] }}</small>
                                                 @else
                                                     <small>No Tienes ninguna imagen para este requisito.</small>
                                                 @endif
