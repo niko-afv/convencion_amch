@@ -92,7 +92,7 @@ trait AuthenticatesAndRegistersUsers {
                     ->to($data['email'], $data['club'])
                     ->subject("Convención 2015 AMCH - ". $data['club']);
             });
-            return redirect('/')->with("message","Se ha enviado un E-Mail al director del club ".$data['club']." para que active el acceso.")
+            return redirect('/')->with("message","Se ha enviado un E-Mail a la dirección ". $data['email'] ." del club ".$data['club']." para que active el acceso.")
                 ->with("msg",'info')
                 ;
         }
