@@ -50,37 +50,28 @@
                                         </thead>
                                         <tbody>
                                             <?php $i = 0;?>
-                                            @foreach($clubes as $club)
+                                            @foreach($clubes_actividades as $club)
                                                 <?php $i+=1; ?>
                                                 <tr>
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ $club->NOMBRE }}</td>
-                                                    <?php //print_r($actividades);die;?>
-                                                    <?php $i=0;?>
-                                                    @foreach($actividades as $actividad)
-                                                        <?php $i+=1;?>
-                                                        @if($club->ID == $actividad->CLUB_ID)
-                                                            @if($actividad->CATEGORIA_NOMBRE == 'Buen Samaritano' || $actividad->CATEGORIA_NOMBRE == 'Buen Ciudadano' || $actividad->CATEGORIA_NOMBRE == 'Buen Sembrador')
-                                                                <td style="text-align: center">
-                                                                    <a href="/ver_desafio/{{ $actividad->ACTIVIDAD_ID }}/{{ $club->ID }}"><i class="fa fa-check text-navy"></i></a>
-                                                                </td>
-                                                            @else
-                                                                <td style="text-align: center">
-                                                                    <a href="#"><i class="fa fa-remove text-danger"></i></a>
-                                                                </td>
-                                                            @endif
-                                                        @else
+                                                    <td>{{ $club['nombre'] }}</td>
+                                                    @if(count($club['actividades']))
+                                                        @foreach($club['actividades'] as $actividad)
                                                             <td style="text-align: center">
-                                                                <a href="#"><i class="fa fa-remove text-danger"></i></a>
+                                                                <a href="/ver_desafio/{{ $actividad['id'] }}/{{ $club['id'] }}"><i class="fa fa-check text-navy"></i></a>
                                                             </td>
-                                                        @endif
-                                                    @endforeach
-                                                    @if($i < 3)
-                                                        <td style="text-align: center">
-                                                            <a href="#"><i class="fa fa-remove text-danger"></i></a>
-                                                        </td>
+                                                        @endforeach
+                                                    @else
+                                                    <td style="text-align: center">
+                                                        <a href="#"><i class="fa fa-remove text-danger"></i></a>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <a href="#"><i class="fa fa-remove text-danger"></i></a>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <a href="#"><i class="fa fa-remove text-danger"></i></a>
+                                                    </td>
                                                     @endif
-
                                                 </tr>
                                             @endforeach
                                         </tbody>
