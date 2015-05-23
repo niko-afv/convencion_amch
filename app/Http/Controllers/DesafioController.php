@@ -27,8 +27,14 @@ class DesafioController extends Controller {
 		$this->middleware('auth');
 	}
 
-    public function ver_desafio($desafio){
+    public function ver_desafio($desafio, $club_id = NULL){
         //$oDesafio = \App\Club::has('actividades')->get();
+
+        if(is_null($club_id)){
+            $session_club = \Session::get('Club');
+            $club_id = $session_club['id'];
+        }
+
         $session_club = \Session::get('Club');
         $actividad = \DB::table('CLUBES')
             ->join('CLUBES_ACTIVIDADES', 'CLUBES.ID', '=', 'CLUBES_ACTIVIDADES.CLUB_ID')
@@ -36,7 +42,7 @@ class DesafioController extends Controller {
 
             ->select('ACTIVIDADES.NOMBRE','CLUBES_ACTIVIDADES.ID','CLUBES_ACTIVIDADES.DESCRIPCION', 'CLUBES_ACTIVIDADES.LUGAR')
             ->where('CLUBES_ACTIVIDADES.ACTIVIDAD_ID',$desafio)
-            ->where('CLUBES_ACTIVIDADES.CLUB_ID',$session_club['id'])
+            ->where('CLUBES_ACTIVIDADES.CLUB_ID',$club_id)
             ->get();
 
 

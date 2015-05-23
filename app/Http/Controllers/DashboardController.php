@@ -75,9 +75,31 @@ class DashboardController extends Controller {
     public function regionales(){
         $clubes = \App\Club::all();
         $categorias = \App\Categoria::all();
+        $sql = "SELECT CLUBES.ID AS CLUB_ID,CLUBES.NOMBRE AS CLUB_NOMBRE, CLUBES_ACTIVIDADES.ID AS RELACION, ACTIVIDADES.NOMBRE AS ACTIVIDAD_NOMBRE
+   FROM CLUBES
+   JOIN CLUBES_ACTIVIDADES ON CLUBES.ID =
+      CLUBES_ACTIVIDADES.CLUB_ID
+   JOIN ACTIVIDADES ON CLUBES_ACTIVIDADES.ACTIVIDAD_ID =
+      ACTIVIDADES.ID
+ORDER BY CLUBES.NOMBRE";
+
+        $actividades = \DB::table('CLUBES')
+            ->join('CLUBES_ACTIVIDADES', 'CLUBES.ID', '=', 'CLUBES_ACTIVIDADES.CLUB_ID')
+            ->join('ACTIVIDADES', 'CLUBES_ACTIVIDADES.ACTIVIDAD_ID', '=', 'ACTIVIDADES.ID')
+            ->join('ACTIVIDADES_CATEGORIAS', 'ACTIVIDADES.CATEGORIA_ID', '=', 'ACTIVIDADES_CATEGORIAS.ID')
+            ->join('IMAGENES', 'CLUBES_ACTIVIDADES.ID', '=', 'IMAGENES.RELACION_ID')
+            ->select('CLUBES.ID AS CLUB_ID', 'CLUBES.NOMBRE AS CLUB_NOMBRE', 'CLUBES_ACTIVIDADES.ID AS RELACION', 'ACTIVIDADES.NOMBRE AS ACTIVIDAD_NOMBRE', 'ACTIVIDADES.ID AS ACTIVIDAD_ID','ACTIVIDADES_CATEGORIAS.NOMBRE AS CATEGORIA_NOMBRE')
+            ->groupBy('ACTIVIDADES.ID')
+            ->get();
+
+        //print_r($result);die;
+
+
+
         return view('dashboard_regional', array(
             'clubes'        => $clubes,
-            'categorias'    => $categorias
+            'categorias'    => $categorias,
+            'actividades'   => $actividades
         ));
     }
 

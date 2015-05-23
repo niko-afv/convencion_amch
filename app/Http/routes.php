@@ -16,6 +16,7 @@ Route::get('home', 'HomeController@index');
 Route::get('dashboard', 'DashboardController@index');
 Route::get('dashboard/regionales', 'DashboardController@regionales');
 Route::get('categorias/', 'DashboardController@categorias');
+Route::get('ver_desafio/{desafio}/{club}', 'DesafioController@ver_desafio');
 Route::get('ver_desafio/{desafio}', 'DesafioController@ver_desafio');
 Route::get('formulario/{categoria}', 'DesafioController@formulario');
 Route::post('formulario/guardar', 'DesafioController@guardar');
