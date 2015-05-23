@@ -79,50 +79,34 @@ class DashboardController extends Controller {
         $clubes_actividades = array();
 
 
-        foreach($clubes as $club){
-            $actividades = \DB::table('ACTIVIDADES')
-                ->join('CLUBES_ACTIVIDADES', 'ACTIVIDADES.ID', '=', 'CLUBES_ACTIVIDADES.ACTIVIDAD_ID')
-                ->join('ACTIVIDADES_CATEGORIAS', 'ACTIVIDADES.CATEGORIA_ID', '=', 'ACTIVIDADES_CATEGORIAS.ID')
-                //->join('IMAGENES', 'CLUBES_ACTIVIDADES.ID', '=', 'IMAGENES.RELACION_ID')
-                ->select('ACTIVIDADES.NOMBRE','ACTIVIDADES.ID')
-                //->where('ACTIVIDADES_CATEGORIAS.ID',$categoria->ID)
-                ->where('CLUBES_ACTIVIDADES.CLUB_ID',$club->ID)
-                ->get();
-
+        foreach($clubes as $club) {
             $xclub = array();
             $xclub['id'] = $club->ID;
             $xclub['nombre'] = $club->NOMBRE;
             $xclub['actividades'] = array();
-            foreach($actividades as $actividad){
-                $xactividad = array();
-                $xactividad['id'] = $actividad->ID;
-                $xactividad['nombre'] = $actividad->NOMBRE;
 
-                $xclub['actividades'][] = $xactividad;
+            foreach ($categorias as $categoria) {
+                $actividades = \DB::table('ACTIVIDADES')
+                    ->join('CLUBES_ACTIVIDADES', 'ACTIVIDADES.ID', '=', 'CLUBES_ACTIVIDADES.ACTIVIDAD_ID')
+                    ->join('ACTIVIDADES_CATEGORIAS', 'ACTIVIDADES.CATEGORIA_ID', '=', 'ACTIVIDADES_CATEGORIAS.ID')
+                    //->join('IMAGENES', 'CLUBES_ACTIVIDADES.ID', '=', 'IMAGENES.RELACION_ID')
+                    ->select('ACTIVIDADES.NOMBRE', 'ACTIVIDADES.ID')
+                    ->where('ACTIVIDADES_CATEGORIAS.ID', $categoria->ID)
+                    ->where('CLUBES_ACTIVIDADES.CLUB_ID', $club->ID)
+                    ->get();
+
+
+                foreach ($actividades as $actividad) {
+                    $xactividad = array();
+                    $xactividad['id'] = $actividad->ID;
+                    $xactividad['nombre'] = $actividad->NOMBRE;
+
+                    $xclub['actividades'][$categoria->NOMBRE] = $xactividad;
+                }
             }
-
             $clubes_actividades[] = $xclub;
-            /*print_r($clubes_actividades);
-            echo "<br/>";
-            echo "<hr/>";
-            echo "<br/>";*/
-
-
-
         }
-        //die;
-
-        /*$actividades = \DB::table('CLUBES')
-            ->join('CLUBES_ACTIVIDADES', 'CLUBES.ID', '=', 'CLUBES_ACTIVIDADES.CLUB_ID')
-            ->join('ACTIVIDADES', 'CLUBES_ACTIVIDADES.ACTIVIDAD_ID', '=', 'ACTIVIDADES.ID')
-            ->join('ACTIVIDADES_CATEGORIAS', 'ACTIVIDADES.CATEGORIA_ID', '=', 'ACTIVIDADES_CATEGORIAS.ID')
-            ->join('IMAGENES', 'CLUBES_ACTIVIDADES.ID', '=', 'IMAGENES.RELACION_ID')
-            ->select('CLUBES.ID AS CLUB_ID', 'CLUBES.NOMBRE AS CLUB_NOMBRE', 'CLUBES_ACTIVIDADES.ID AS RELACION', 'ACTIVIDADES.NOMBRE AS ACTIVIDAD_NOMBRE', 'ACTIVIDADES.ID AS ACTIVIDAD_ID','ACTIVIDADES_CATEGORIAS.NOMBRE AS CATEGORIA_NOMBRE')
-            ->groupBy('ACTIVIDADES.ID')
-            ->get();*/
-
-        //print_r($result);die;
-
+        //print_r($clubes_actividades[10]);die;
 
 
         return view('dashboard_regional', array(

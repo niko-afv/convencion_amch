@@ -56,11 +56,33 @@
                                                     <td>{{ $i }}</td>
                                                     <td>{{ $club['nombre'] }}</td>
                                                     @if(count($club['actividades']))
-                                                        @foreach($club['actividades'] as $actividad)
+                                                        @if( isset($club['actividades']['Buen Samaritano']) )
+                                                                <td style="text-align: center">
+                                                                    <a href="/ver_desafio/{{ $club['actividades']['Buen Samaritano']['id'] }}/{{ $club['id'] }}"><i class="fa fa-check text-navy"></i></a>
+                                                                </td>
+                                                        @else
                                                             <td style="text-align: center">
-                                                                <a href="/ver_desafio/{{ $actividad['id'] }}/{{ $club['id'] }}"><i class="fa fa-check text-navy"></i></a>
+                                                                <a href="#"><i class="fa fa-remove text-danger"></i></a>
                                                             </td>
-                                                        @endforeach
+                                                        @endif
+                                                        @if( isset($club['actividades']['Buen Ciudadano']) )
+                                                                <td style="text-align: center">
+                                                                    <a href="/ver_desafio/{{ $club['actividades']['Buen Ciudadano']['id'] }}/{{ $club['id'] }}"><i class="fa fa-check text-navy"></i></a>
+                                                                </td>
+                                                        @else
+                                                            <td style="text-align: center">
+                                                                <a href="#"><i class="fa fa-remove text-danger"></i></a>
+                                                            </td>
+                                                        @endif
+                                                        @if( isset($club['actividades']['Buen Sembrador']) )
+                                                            <td style="text-align: center">
+                                                                <a href="/ver_desafio/{{ $club['actividades']['Buen Sembrador']['id'] }}/{{ $club['id'] }}"><i class="fa fa-check text-navy"></i></a>
+                                                            </td>
+                                                        @else
+                                                            <td style="text-align: center">
+                                                                <a href="#"><i class="fa fa-remove text-danger"></i></a>
+                                                            </td>
+                                                        @endif
                                                     @else
                                                     <td style="text-align: center">
                                                         <a href="#"><i class="fa fa-remove text-danger"></i></a>
