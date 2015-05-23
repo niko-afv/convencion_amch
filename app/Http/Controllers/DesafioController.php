@@ -28,11 +28,15 @@ class DesafioController extends Controller {
 	}
 
     public function ver_desafio($desafio, $club_id = NULL){
-        //$oDesafio = \App\Club::has('actividades')->get();
+        $view = 'desafio_regional';
 
         if(is_null($club_id)){
             $session_club = \Session::get('Club');
             $club_id = $session_club['id'];
+            $nombre_club = $session_club['nombre'];
+            $view = 'desafio';
+        }else{
+            $nombre_club = \App\Club::find($club_id)->NOMBRE;
         }
 
         $session_club = \Session::get('Club');
@@ -52,9 +56,10 @@ class DesafioController extends Controller {
             ->where('CLUBES_ACTIVIDADES.ID',$actividad[0]->ID)
             ->get();
 
-        return view('desafio', array(
+        return view($view, array(
             'actividad'   => $actividad[0],
-            'galeria'      => $galeria
+            'galeria'     => $galeria,
+            'club'        => $nombre_club
 
         ));
     }
@@ -122,6 +127,7 @@ class DesafioController extends Controller {
 
             $file = \Request::file('file');
             $file = $file[0];
+
             $uploadSuccess = $file->move($upload_dir,/*$this->convert_string(*/$file->getClientOriginalName()/*)*/);
 
             $oImagen = new \App\Imagen();
