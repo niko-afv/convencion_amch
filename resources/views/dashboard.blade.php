@@ -47,7 +47,7 @@
                                         @if(isset($desafio[$categoria->ID]) && count($desafio[$categoria->ID]) >  0)
                                             <a href="/ver_desafio/{{ $desafio[$categoria->ID]['id'] }}">
                                          @else
-                                            <a href="javascript:void(0);">
+                                            <a href="/formulario/{{ $categoria->ID }}">
                                          @endif
 
                                         <div class="widget navy-bg no-padding categories">
