@@ -73,7 +73,7 @@
 
                             </div>
 
-                            <h2>El Sistema no está habilitado para recibir mas imagenes.</h2>
+                            <!--<h2>El Sistema no está habilitado para recibir mas imagenes.</h2>-->
 
                             <div style="clear: both;"></div>
 
